@@ -1,11 +1,15 @@
+DROP TABLE IF EXISTS Suoritus;
+
+DROP TABLE IF EXISTS Kayttaja;
+
 CREATE TABLE Kayttaja (
   Kayttaja_ID INTEGER UNSIGNED  NOT NULL   AUTO_INCREMENT,
   e_nimi VARCHAR(20)  NULL  ,
   s_nimi VARCHAR(45)  NULL  ,
   ika INTEGER UNSIGNED  NULL  ,
   asuinpaikka VARCHAR(45)  NULL  ,
-  kayttajatunnus VARCHAR(20)  NULL  ,
-  salasana VARCHAR(20)  NULL  ,
+  kayttajatunnus VARCHAR(20)  NOT NULL  UNIQUE,
+  salasana VARCHAR(20)  NOT NULL  ,
   lisatietoa VARCHAR(255)  NULL  ,
   hetu VARCHAR(20)  NULL  ,
   rekisteroitymisPvm DATE  NULL    ,
