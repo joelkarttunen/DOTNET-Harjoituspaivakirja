@@ -3,13 +3,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <h2>Tässä listataan suorituksesi</h2>
-    <p>Valitse kuukausi miltä listata</p>
-    <div>
-        <asp:DropDownList ID="suoritusKuukausiList" runat="server"></asp:DropDownList>
-    </div>
+    <br />
+    <br />
+    <div class="container">
+    <div class="page-header">
+            <h1>Tarkastele suorituksiasi</h1>
+            <p>Valitse haluamasi aika boxista</p>
+        </div>
+    
 
-    <div id="suoritusContent">
+    <div class="suoritusContent">
         <asp:Repeater ID="suoritusRepeater" runat="server">
             <HeaderTemplate>
                 <table>
@@ -48,5 +51,6 @@
         </asp:Repeater>
 
     </div>
+  </div>
 </asp:Content>
 

@@ -7,21 +7,51 @@
     <title></title>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
+    <link href="~/css/bootstrap.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <form id="form1" runat="server">
-    <div id="header"><h1>Harjoituspäiväkirja</h1></div>
-    <div id="navbar"  >
-        <asp:HyperLink ID="index" runat="server" NavigateUrl="~/index.aspx">Etusivu</asp:HyperLink>
-        <asp:HyperLink ID="selaaSuorituksia" runat="server" NavigateUrl="~/selaaSuoritukset.aspx">Selaa suorituksia</asp:HyperLink>
-        <asp:HyperLink ID="lisaaSuoritus" runat="server" NavigateUrl="~/lisaaSuoritus.aspx">Lisää suoritus</asp:HyperLink>
-        <asp:HyperLink ID="login" runat="server" NavigateUrl="~/login.aspx">Login</asp:HyperLink>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+
+                <ul class="nav navbar-nav">
+
+                <li><asp:HyperLink ID="index" runat="server" NavigateUrl="~/index.aspx"><b>Harjoituspäiväkirja</b></asp:HyperLink></li>
+                <li><asp:HyperLink ID="selaaSuorituksia" runat="server" NavigateUrl="~/selaaSuoritukset.aspx">Selaa suorituksia</asp:HyperLink></li>
+                <li><asp:HyperLink ID="lisaaSuoritus" runat="server" NavigateUrl="~/lisaaSuoritus.aspx">Lisää suoritus</asp:HyperLink></li>
+                
+                </ul>
+            </div>
+                <div class="navbar-collapse collapse">
+                    
+                        <div class="navbar-form navbar-right">
+                            <div class="form-group">
+                                <input type="text" id="txtUserName" placeholder="Käyttäjätunnus" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="txtPasswornd" placeholder="Salasana" class="form-control" />
+                            </div>
+                            
+                                <button type="submit" class="btn btn-success"> Login</button>
+                            
+                         </div>
+                    
+                 </div>
+           
+        </div>
     </div>
-    <div>
+    <br />
+    <br />
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
-    </div>
+    
     </form>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

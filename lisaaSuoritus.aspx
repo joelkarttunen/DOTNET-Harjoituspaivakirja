@@ -3,6 +3,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <h1>Hieno sivu suoritusten lisäämiseen</h1>
+    <br />
+    <br />
+    <div class="container">
+    
+        <div class="page-header">
+        <h1>Sivu suoritusten lisäämikseksi</h1>
+         </div>
+    
+    </div>
+
+    
 </asp:Content>
 
