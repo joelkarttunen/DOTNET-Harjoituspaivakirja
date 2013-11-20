@@ -20,4 +20,13 @@ public class Suoritus
 		// TODO: Add constructor logic here
 		//
 	}
+    public Suoritus(int sid, int kid, DateTime aloitusaika, DateTime lopetusaika, string laji, string tuntemukset)
+    {
+        this.suoritusId = sid;
+        this.kayttajaId = kid;
+        this.alkuAika = aloitusaika;
+        this.loppuAika = lopetusaika;
+        this.laji = laji;
+        this.tuntemukset = tuntemukset;
+    }
 }

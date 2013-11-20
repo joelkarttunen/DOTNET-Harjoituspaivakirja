@@ -11,7 +11,12 @@
 <body>
     <form id="form1" runat="server">
     <div id="header"><h1>Harjoituspäiväkirja</h1></div>
-    <div id="navbar"></div>
+    <div id="navbar"  >
+        <asp:HyperLink ID="index" runat="server" NavigateUrl="~/index.aspx">Etusivu</asp:HyperLink>
+        <asp:HyperLink ID="selaaSuorituksia" runat="server" NavigateUrl="~/selaaSuoritukset.aspx">Selaa suorituksia</asp:HyperLink>
+        <asp:HyperLink ID="lisaaSuoritus" runat="server" NavigateUrl="~/lisaaSuoritus.aspx">Lisää suoritus</asp:HyperLink>
+        <asp:HyperLink ID="login" runat="server" NavigateUrl="~/login.aspx">Login</asp:HyperLink>
+    </div>
     <div>
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
