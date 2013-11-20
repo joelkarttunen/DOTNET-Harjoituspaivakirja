@@ -32,10 +32,7 @@ public class Tietokanta
 	{
 		
 	}
-    public ~Tietokanta()
-    {
-       
-    }
+
 
     public List<Suoritus> haeSuorituksetKayttajanIDnPerusteella(string kayttajanId)
     {
