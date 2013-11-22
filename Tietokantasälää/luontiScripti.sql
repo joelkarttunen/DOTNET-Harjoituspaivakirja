@@ -8,11 +8,12 @@ CREATE TABLE Kayttaja (
   s_nimi VARCHAR(45)  NULL  ,
   ika INTEGER UNSIGNED  NULL  ,
   asuinpaikka VARCHAR(45)  NULL  ,
-  kayttajatunnus VARCHAR(20)  NOT NULL  UNIQUE,
+  kayttajatunnus VARCHAR(20)  NOT NULL  ,
   salasana VARCHAR(20)  NOT NULL  ,
   lisatietoa VARCHAR(255)  NULL  ,
   hetu VARCHAR(20)  NULL  ,
-  rekisteroitymisPvm DATE  NULL    ,
+  rekisteroitymisPvm DATE  NULL  ,
+  email VARCHAR(45)  NULL    ,
 PRIMARY KEY(Kayttaja_ID))
 TYPE=InnoDB;
 
