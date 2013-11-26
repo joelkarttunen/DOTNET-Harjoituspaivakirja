@@ -13,69 +13,31 @@ public partial class Account_Register : System.Web.UI.Page
     {
 
     }
-    protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
-    {
-        /*
-        FormsAuthentication.SetAuthCookie(CreateUserWizard1.CreateUserStep.
-         
-          // createPersistentCookie 
-            ContentTemplateContainer.FindControl("UserName").ToString(), false );
+    
+        //lblDebug.Text = CreateUserWizard1.UserName;
 
-        string continueUrl = CreateUserWizard1.ContinueDestinationPageUrl;
-        if (String.IsNullOrEmpty(continueUrl))
-        {
-            continueUrl = "~/";
-        }
-        TextBox FirstNameTextBox = (TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("FirstName");
-        TextBox LastNameTextBox = (TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("LastName");
-        TextBox UsernameTextBox = (TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("UserName");
-        TextBox EmailTextBox = (TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("Email");
-
-
-        lblDebug.Text = "testi";
-         * */
-    }
-    protected void FinishButtonClicked(object sender, WizardNavigationEventArgs e)
+    protected void btnSignup_Click(object sender, EventArgs e)
     {
-        lblDebug.Text = "testi";
-    }
-    protected void CreatinUser(object sender, LoginCancelEventArgs e)
-    {
-        e.Cancel = true;
-
-    }
-    protected void NextButtonClick(object sender, WizardNavigationEventArgs e)
-    {
-        e.Cancel = false;
-        CreateUserWizard1.ActiveStepIndex = 1;
-    }
-    protected void ContinueButtonClicked(object sender, EventArgs e)
-    {
-        
-        
-        /*
-        string continueUrl = CreateUserWizard1.ContinueDestinationPageUrl;
-        if (String.IsNullOrEmpty(continueUrl))
-        {
-            continueUrl = "~/";
-        }
-        */
-        
         AutentikointiDB.ConnectionString = ConfigurationManager.ConnectionStrings["HarkkaPvk"].ConnectionString;
-        if (!AutentikointiDB.isUserNameInUse(CreateUserWizard1.UserName))
+        if (!AutentikointiDB.isUserNameInUse(txtUsername.Text))
         {
-            AutentikointiDB.CreateNewUser(CreateUserWizard1.UserName, CreateUserWizard1.Email, CreateUserWizard1.Password, true);
-            // kirjaa käyttäjän sisään.
-            FormsAuthentication.SetAuthCookie(CreateUserWizard1.UserName, false /* createPersistentCookie */);
+            string salasana = txtPassword.Text;
+            AutentikointiDB.CreateNewUser(txtUsername.Text, txtEmail.Text, salasana, true);
+            Response.Redirect("~/index.aspx");
+            //FormsAuthentication.SignOut();
+
+            // kirjaa käyttäjän pysyvästi
+            // vrt. muista minut. Voidaan ehkä toteuttaa jossain vaiheessa.
+            //FormsAuthentication.SetAuthCookie(txtUsername.Text, false /* createPersistentCookie */);
 
         }
         else
         {
+            lblKayttajanimiVarattu.Text = "Kayttajanimi on jo varattu.";   
             //Response.Redirect("~/index.aspx");
 
             //Kirjaa käyttäjän ulos ulos
-            FormsAuthentication.SignOut();
+            //FormsAuthentication.SignOut();
         }
-        //lblDebug.Text = CreateUserWizard1.UserName;
     }
 }

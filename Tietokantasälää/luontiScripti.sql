@@ -9,7 +9,7 @@ CREATE TABLE Kayttaja (
   ika INTEGER UNSIGNED  NULL  ,
   asuinpaikka VARCHAR(45)  NULL  ,
   kayttajatunnus VARCHAR(20)  NOT NULL  ,
-  salasana VARCHAR(20)  NOT NULL  ,
+  salasana VARCHAR(100)  NOT NULL  ,
   lisatietoa VARCHAR(255)  NULL  ,
   hetu VARCHAR(20)  NULL  ,
   rekisteroitymisPvm DATE  NULL  ,

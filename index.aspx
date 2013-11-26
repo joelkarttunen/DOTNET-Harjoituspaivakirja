@@ -7,17 +7,10 @@
         <br />
         <div class="page-header">
             <h1>Index sivu, tarvitaanko?</h1>
-
-            <!-- aloita poistaminen -->
-            <asp:CreateUserWizard ID="CreateUserWizard1" runat="server">
-                <WizardSteps>
-                    <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
-                    </asp:CreateUserWizardStep>
-                    <asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server">
-                    </asp:CompleteWizardStep>
-                </WizardSteps>
-            </asp:CreateUserWizard>
-            <!-- lopeta poistaminen -->
+            <p>Tänne voisi kirjoittaa käyttöohjeita ja yleistä tietoa ohjelmasta.
+                Joku sivuhan täytyy aluksi kuitenkin ladata!
+            </p>
+            
 
         </div>
     </div>

@@ -25,8 +25,8 @@ public static class AutentikointiDB
         catch (Exception ex)
         {
             System.Diagnostics.Debug.Print(ex.Message);
-            //throw new Exception(ex.Message);
-            return false;
+            throw new Exception(ex.Message);
+            //return false;
         }
     }
     private static void CloseMyConnection()
@@ -109,22 +109,15 @@ public static class AutentikointiDB
     {
         // Tarkistetaan käyttäjä ja salasana tietokannasta
         //Kannassa salasana on häshättynä
-        // Vaarallinen takaovi, jota ei kannata jättää tuotantokoodiin!
         try
         {
-            bool backdoorInUse = false;
-            if (backdoorInUse)
-            {
-                if (username == "jack" && password == "russel")
-                {
-                    return true;
-                }
-            }
+            
             // Varsinainen tarkistus tietokannasta
             // ensin "pöljän pojan tarkistus"
             if (username.Length * password.Length == 0)
             {
-                throw new Exception("Eipä yritetä tuollaisia");
+               // return false;
+                throw new Exception("Salasanaa tai käyttäjätunnusta ei ollut");
             }
             else
             {
@@ -133,22 +126,51 @@ public static class AutentikointiDB
                 //Kokeillaan tietokannasta
                 if (OpenMyConnection())
                 {
-                    username += "%";
-                    string sqlQuery = @"SELECT count(*) FROM Kayttaja WHERE kayttajatunnus LIKE @Parametri AND salasana LIKE @Password";
+                    //username += "%";
+                    
+                    
+                    string sqlQuery = "SELECT count(*) FROM Kayttaja WHERE kayttajatunnus LIKE @Parametri AND salasana LIKE @Password";
                     MySqlCommand command = new MySqlCommand(sqlQuery, myConn);
 
+
+
+                    command.Parameters.AddWithValue("@Parametri", username);
+                    command.Parameters.AddWithValue("@Password", hashattyPwd);
+
+                    /*
                     //Lisätään komennolle kaksi parametria
                     MySqlParameter param = new MySqlParameter("Parametri", SqlDbType.VarChar);
                     param.Value = username;
                     command.Parameters.Add(param);
 
                     MySqlParameter param2 = new MySqlParameter("Password", SqlDbType.VarChar);
-                    hashattyPwd += "%";
-                    param2.Value = hashattyPwd;
+                    //hashattyPwd += "%";
+                    param2.Value = "'"+hashattyPwd+"'";
                     command.Parameters.Add(param2);
-
+                    */
+                    /*
+                    string sqlQuery = "SELECT count(*) FROM Kayttaja WHERE kayttajatunnus LIKE "+username +
+                        " AND salasana LIKE '"+hashattyPwd+"'";
+                    MySqlCommand command = new MySqlCommand(sqlQuery, myConn);
+                     * */
                     //Suoritetaan kysely kantaan
-                    int i = (int)command.ExecuteScalar();
+                    int i = 0;
+
+                        try
+                        {
+                            object userNameObj = command.ExecuteScalar();
+                            if (userNameObj == null)
+                                return false;
+
+                                i = Convert.ToInt32(userNameObj);
+                            //i = (Int32)command.ExecuteScalar();
+                        }
+                        catch (Exception ex)
+                        {
+                            string testi = ex.Message.ToString();
+                            throw;
+                        }
+                                        
                     if (i == 1)
                         return true;
                     else
