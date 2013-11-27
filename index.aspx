@@ -4,12 +4,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="container">
-        <br />
+        
         <div class="page-header">
-            <h1>Index sivu, tarvitaanko?</h1>
-            <p>Tänne voisi kirjoittaa käyttöohjeita ja yleistä tietoa ohjelmasta.
-                Joku sivuhan täytyy aluksi kuitenkin ladata!
-            </p>
+            <h1>Tervetuloa Harjoituspäiväkirjan pariin!</h1>
+            <p>Kirjaudu sisään yläpalkin avulla.</p>
+            <p>Jos olet uusi käyttäjä, <asp:HyperLink ID="HyperLink1" NavigateUrl="~/Account/Register.aspx" runat="server">rekisteröidy</asp:HyperLink></p>
+            
             
 
         </div>

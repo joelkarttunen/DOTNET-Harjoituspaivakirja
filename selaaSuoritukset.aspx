@@ -12,15 +12,22 @@
         </div>
     
 
-    <div class="suoritusContent">
+    <div class="col-md-3">
+        <asp:Label ID="Label3" runat="server" Text="Alku"></asp:Label>
+        <asp:Calendar ID="suoritusAlkuCalendar" AutoPostBack="true" runat="server" OnSelectionChanged="suoritusAlkuCalendar_SelectionChanged">
+        </asp:Calendar>
+        <asp:Label ID="Label4" runat="server" Text="Loppu"></asp:Label>
+        <asp:Calendar ID="suoritusLoppuCalendar" AutoPostBack="true" EnableViewState="true"  runat="server" OnSelectionChanged="suoritusLoppuCalendar_SelectionChanged"></asp:Calendar>
+    </div>
+        
+      <div class="col-md-9">
         <asp:Repeater ID="suoritusRepeater" runat="server">
             <HeaderTemplate>
-                <table>
+                <table class="table table-striped" >
                     <tr>
-                        <th>Suorituslaji</th>
-                        <th>Suorituksen pvm</th>
-                        <th>Aloitusaika</th>
-                        <th>Lopetusaika</th>
+                        <th>Päivämäärä</th>
+                        <th>Laji</th>
+                        
                         <th>Lisäinfo</th>
                     </tr>
                 
@@ -28,17 +35,12 @@
             <ItemTemplate>
                 <tr>
                 <td>
-                    <asp:Label runat="server" ID="Label1" Text='<%# Eval("laji") %>'></asp:Label>
+                    <asp:Label runat="server" ID="Label1" Text='<%# Eval("alkuAika") %>'></asp:Label>
                 </td>
                  <td>
                     <asp:Label runat="server" ID="Label2" Text='<%# Eval("laji") %>'></asp:Label>
                 </td>
-                 <td>
-                    <asp:Label runat="server" ID="Label3" Text='<%# Eval("alkuAika") %>'></asp:Label>
-                </td>
-                 <td>
-                    <asp:Label runat="server" ID="Label4" Text='<%# Eval("loppuAika") %>'></asp:Label>
-                </td>
+                 
                  <td>
                      <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# Eval("suoritusId", "~/suoritus.aspx?id={0}") %>'>Muuta</asp:HyperLink>
                 </td>
@@ -49,8 +51,8 @@
                 </table>
             </FooterTemplate>
         </asp:Repeater>
-
-    </div>
+      </div>
+   
   </div>
 </asp:Content>
 
