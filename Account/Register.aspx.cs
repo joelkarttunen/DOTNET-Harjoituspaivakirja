@@ -22,7 +22,10 @@ public partial class Account_Register : System.Web.UI.Page
         if (!AutentikointiDB.isUserNameInUse(txtUsername.Text))
         {
             string salasana = txtPassword.Text;
-            AutentikointiDB.CreateNewUser(txtUsername.Text, txtEmail.Text, salasana, true);
+            //AutentikointiDB.CreateNewUser(txtUsername.Text, txtEmail.Text, salasana, true);
+            AutentikointiDB.CreateNewUser(txtFirstName.Text, txtLastName.Text, txtHetu.Text, 
+                Convert.ToInt32(txtIka.Text), txtAsuinpaikka.Text, txtUsername.Text, txtEmail.Text,
+                txtPassword.Text, true);
             Response.Redirect("~/index.aspx");
             //FormsAuthentication.SignOut();
 

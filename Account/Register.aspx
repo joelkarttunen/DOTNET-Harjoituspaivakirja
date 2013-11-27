@@ -54,6 +54,44 @@
 
         <tr>
             <td style="width: 100px">
+                <asp:Label ID="Label2" runat="server" Text="Ikä:" Width="80px"></asp:Label>
+            </td>
+            <td style="width: 116px">
+                <asp:TextBox ID="txtIka" runat="server" ></asp:TextBox>
+            </td>
+            <td style="width: 100px">
+                <asp:RegularExpressionValidator ID="IkaReqularExpressionValidator" ControlToValidate="txtIka" runat="server" 
+                    Display="Dynamic" ValidationExpression="[0-9]*" ErrorMessage="Syötä vain nunmeroita"></asp:RegularExpressionValidator>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width: 100px">
+                <asp:Label ID="Label3" runat="server" Text="Asuinpaikka:" Width="80px"></asp:Label>
+            </td>
+            <td style="width: 116px">
+                <asp:TextBox ID="txtAsuinpaikka" runat="server" ></asp:TextBox>
+            </td>
+            <td style="width: 100px">
+                <!-- Tähän validaattori jos halutaan-->
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width: 100px">
+                <asp:Label ID="Label4" runat="server" Text="Hetu:" Width="80px"></asp:Label>
+            </td>
+            <td style="width: 116px">
+                <asp:TextBox ID="txtHetu" runat="server" ></asp:TextBox>
+            </td>
+            <td style="width: 100px">
+                <asp:RegularExpressionValidator ID="HetuRegularExpressionValidator" ControlToValidate="txtHetu" runat="server" 
+                    Display="Dynamic" ValidationExpression="^\d{6}[A+-]\d{3}[a-zA-Z0-9]$" ErrorMessage="Syötä hetu oikeassa muodossa"></asp:RegularExpressionValidator>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width: 100px">
                 <asp:Label ID="lblEmail" runat="server" Text="Sähköposti:" Width="45px"></asp:Label>
             </td>
             <td style="width: 116px">

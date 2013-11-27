@@ -53,9 +53,14 @@ public static class AutentikointiDB
                  using (MySqlCommand command = new MySqlCommand("SELECT kayttajatunnus FROM Kayttaja WHERE"
                                        + " kayttajatunnus LIKE @Parametri", myConn))
                 {
-                    MySqlParameter param = new MySqlParameter("Parametri", SqlDbType.VarChar);
+                    
+                     /*MySqlParameter param = new MySqlParameter("Parametri", SqlDbType.VarChar);
                     param.Value = username;
                     command.Parameters.Add(param);
+                    */
+                    command.Parameters.AddWithValue("@Parametri", username);
+
+
 
                     using (MySqlDataReader rdr = command.ExecuteReader())
                     {
@@ -89,6 +94,34 @@ public static class AutentikointiDB
                 if (hashPassword)
                     passu = JAMK.ICT.Security.SHA256Hash.getSHA256Hash(passu);
                 string sql = string.Format("INSERT INTO Kayttaja (kayttajatunnus, email, salasana) VALUES ('{0}','{1}','{2}')", username, email, passu);
+                MySqlCommand command = new MySqlCommand(sql, myConn);
+                command.ExecuteNonQuery();
+                CloseMyConnection();
+                return true;
+            }
+            else
+            {
+                throw new Exception("Cannot open myconnection to database");
+            }
+        }
+        catch (Exception ex)
+        {
+
+            throw;
+        }
+    }
+    public static bool CreateNewUser(string enimi, string snimi, string hetu, int ika, string asuinpaikka, string username, string email, string password, bool hashPassword)
+    {
+        DateTime now = DateTime.Now.Date;
+        try
+        {
+            if (OpenMyConnection())
+            {
+                string passu = password;
+                if (hashPassword)
+                    passu = JAMK.ICT.Security.SHA256Hash.getSHA256Hash(passu);
+                string sql = string.Format("INSERT INTO Kayttaja (e_nimi, s_nimi, hetu, ika, asuinpaikka, kayttajatunnus, email, salasana, rekisteroitymisPvm)"
+                    + " VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')", enimi, snimi, hetu, ika, asuinpaikka, username, email, passu, now);
                 MySqlCommand command = new MySqlCommand(sql, myConn);
                 command.ExecuteNonQuery();
                 CloseMyConnection();
