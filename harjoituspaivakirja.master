@@ -20,6 +20,7 @@
                 <li><asp:HyperLink ID="index" runat="server" NavigateUrl="~/index.aspx"><b>Harjoituspäiväkirja</b></asp:HyperLink></li>
                 <li><asp:HyperLink ID="selaaSuorituksia" runat="server" NavigateUrl="~/selaaSuoritukset.aspx">Selaa suorituksia</asp:HyperLink></li>
                 <li><asp:HyperLink ID="lisaaSuoritus" runat="server" NavigateUrl="~/lisaaSuoritus.aspx">Lisää suoritus</asp:HyperLink></li>
+                <li><asp:HyperLink ID="kayttajaTiedot" runat="server" NavigateUrl="~/KayttajaTiedot.aspx">Käyttäjätiedot</asp:HyperLink></li>
                 
                 </ul>
             </div>
