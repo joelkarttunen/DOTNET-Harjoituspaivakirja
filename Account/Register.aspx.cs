@@ -26,13 +26,17 @@ public partial class Account_Register : System.Web.UI.Page
             AutentikointiDB.CreateNewUser(txtFirstName.Text, txtLastName.Text, txtHetu.Text, 
                 Convert.ToInt32(txtIka.Text), txtAsuinpaikka.Text, txtUsername.Text, txtEmail.Text,
                 txtPassword.Text, true);
-            Response.Redirect("~/index.aspx");
+            
             //FormsAuthentication.SignOut();
 
             // kirjaa käyttäjän pysyvästi
             // vrt. muista minut. Voidaan ehkä toteuttaa jossain vaiheessa.
             //FormsAuthentication.SetAuthCookie(txtUsername.Text, false /* createPersistentCookie */);
 
+
+            AutentikointiDB.Login(txtUsername.Text, txtPassword.Text);
+
+            Response.Redirect("~/KayttajaTiedot.aspx");
         }
         else
         {

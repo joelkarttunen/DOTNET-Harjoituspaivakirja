@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 
 public partial class selaaSuoritukset : System.Web.UI.Page
 {
+    
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsCallback)
@@ -28,6 +30,7 @@ public partial class selaaSuoritukset : System.Web.UI.Page
 
         Tietokanta tietokanta = new Tietokanta();
         int kayttajanID = tietokanta.haeKayttajanID(System.Web.HttpContext.Current.User.Identity.Name);
+        
         //List<Suoritus> suoritusList = new List<Suoritus>();
         List<Suoritus> suoritusList = tietokanta.haeSuorituksetKayttajanIDnPerusteella(kayttajanID);
        // suoritusList.Add(s1);
@@ -70,5 +73,24 @@ public partial class selaaSuoritukset : System.Web.UI.Page
 
         suoritusRepeater.DataSource = rajattuList;
         suoritusRepeater.DataBind();
+    }
+    protected void suoritusRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName == "Delete")
+        {
+            int suoritus_id = Convert.ToInt32(e.CommandArgument.ToString());
+
+            Tietokanta tk = new Tietokanta();
+            int k_id = tk.haeKayttajanID(System.Web.HttpContext.Current.User.Identity.Name);
+
+            tk.poistaSuoritus(suoritus_id, k_id);
+
+            List<Suoritus> suoritusList = tk.haeSuorituksetKayttajanIDnPerusteella(k_id);
+
+            Session["suoritukset"] = suoritusList;
+
+            suoritusRepeater.DataSource = suoritusList;
+            suoritusRepeater.DataBind();
+        }
     }
 }

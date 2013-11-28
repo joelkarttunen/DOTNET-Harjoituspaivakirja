@@ -82,7 +82,67 @@ public class Tietokanta
     }
     public Kayttaja palautaKayttaja(int id){
 
-        return null;
+        try
+        {
+            connection.Open();
+
+            string query = "SELECT * FROM Kayttaja WHERE Kayttaja_ID = @id";
+
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("id", id);
+
+            MySqlDataReader dataReader = cmd.ExecuteReader();
+            Kayttaja k = new Kayttaja();
+
+            while (dataReader.Read())
+            {
+                
+                k.eNimi = dataReader["e_nimi"].ToString();
+                k.sNimi = dataReader["s_nimi"].ToString();
+                k.ika = Convert.ToInt32(dataReader["ika"]);
+                k.lisatiedot = dataReader["lisatietoa"].ToString();
+                k.asuinpaikka = dataReader["asuinpaikka"].ToString();
+                k.hetu = dataReader["hetu"].ToString();
+               
+            }
+
+            connection.Close();
+            return k;
+        }
+        catch (Exception)
+        {
+            
+            throw;
+        }
+    }
+    public bool paivitaKayttajaTiedot(string tunnus, Kayttaja k)
+    {
+        bool success = false;
+        try
+        {
+            connection.Open();
+            string query = "UPDATE Kayttaja SET e_nimi=@uusi_enimi, s_nimi=@uusi_snimi, ika=@uusi_ika, lisatietoa=@uusi_tieto, asuinpaikka=@uusi_paikka, hetu=@uusi_hetu WHERE kayttajatunnus=@tunnus";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+
+            cmd.Parameters.AddWithValue("@uusi_enimi", k.eNimi);
+            cmd.Parameters.AddWithValue("@uusi_snimi", k.sNimi);
+            cmd.Parameters.AddWithValue("@uusi_ika", k.ika);
+            cmd.Parameters.AddWithValue("@uusi_tieto", k.lisatiedot);
+            cmd.Parameters.AddWithValue("@uusi_paikka", k.asuinpaikka);
+            cmd.Parameters.AddWithValue("@uusi_hetu", k.hetu);
+            cmd.Parameters.AddWithValue("@tunnus", tunnus);
+
+            cmd.ExecuteNonQuery();
+            connection.Close();
+            success = true;
+        }
+        catch (Exception)
+        {
+            
+            throw;
+            
+        }
+        return success;
     }
     public void tallennaSuoritus(Suoritus s, int kayttajaID)
     {
@@ -156,6 +216,31 @@ public class Tietokanta
         connection.Close();
         
     }
+    public void poistaSuoritus(int suoritus_id, int kayttaja_id)
+    {
+        try
+        {
+            connection.Open();
+
+            string query = "DELETE FROM Suoritus WHERE Kayttaja_ID=@kayttaja_id AND Suoritus_ID=@suoritus_id";
+
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@kayttaja_id", kayttaja_id);
+            cmd.Parameters.AddWithValue("@suoritus_id", suoritus_id);
+
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
+        }
+        catch (Exception)
+        {
+            
+            throw;
+        }
+        
+
+    }
+
     public void poistaKayttajaIDnPerusteella(int id){
     }
 

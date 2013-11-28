@@ -15,9 +15,18 @@ public partial class harjoituspaivakirja : System.Web.UI.MasterPage
         if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
         {
             loginLogout.Text = "Logout";
+            txtKayttajatunnus.Visible = false;
+            txtSalasana.Visible = false;
+            txtLogged.Text = "Olet kirjautunut sisään.";
+
         }
         else
+        {
             loginLogout.Text = "Login";
+            lisaaSuoritus.Visible = false;
+            selaaSuorituksia.Visible = false;
+            kayttajaTiedot.Visible = false;
+        }
     }
     // LoginLogout-nappulan tapahtumankäsittelijä.
     protected void On_Click(object sender, EventArgs e)
@@ -26,6 +35,13 @@ public partial class harjoituspaivakirja : System.Web.UI.MasterPage
         {
             FormsAuthentication.SignOut();
             loginLogout.Text = "Login";
+            txtKayttajatunnus.Visible = true;
+            txtSalasana.Visible = true;
+            txtLogged.Text = "";
+            lisaaSuoritus.Visible = false;
+            selaaSuorituksia.Visible = false;
+            kayttajaTiedot.Visible = false;
+            Response.Redirect("index.aspx");
             //lblDebug.Text = "joopajoo";
         }
         else

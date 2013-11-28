@@ -21,7 +21,7 @@
     </div>
         
       <div class="col-md-9">
-        <asp:Repeater ID="suoritusRepeater" runat="server">
+        <asp:Repeater ID="suoritusRepeater" runat="server" OnItemCommand="suoritusRepeater_ItemCommand">
             <HeaderTemplate>
                 <table class="table table-striped" >
                     <tr>
@@ -29,6 +29,7 @@
                         <th>Laji</th>
                         
                         <th>Lisäinfo</th>
+                        <th>Poista</th>
                     </tr>
                 
             </HeaderTemplate>
@@ -43,6 +44,9 @@
                  
                  <td>
                      <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# Eval("suoritusId", "~/suoritus.aspx?id={0}") %>'>Muuta</asp:HyperLink>
+                </td>
+                 <td> 
+                     <asp:LinkButton ID="LinkButton1" runat="server" Text="" CommandName="Delete" CommandArgument='<%# Eval("suoritusId") %>' >X</asp:LinkButton>
                 </td>
                 </tr>
             </ItemTemplate>

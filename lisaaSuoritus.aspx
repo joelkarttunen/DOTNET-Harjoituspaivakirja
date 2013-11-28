@@ -39,13 +39,13 @@
                     
                     <asp:Label ID="Label3" runat="server" Text="Aloitusaika"></asp:Label>
                     <asp:TextBox ID="txtAloitusAika" runat="server" CssClass="col-sm-10"></asp:TextBox>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="txtAloitusAika" runat="server" ForeColor="Red"  ErrorMessage="Anna aika muodossa TT:MM" ValidationExpression="^(1[0-2]|0[1-9]):[0-5][0-9]$"></asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="txtAloitusAika" runat="server" ForeColor="Red"  ErrorMessage="Anna aika muodossa TT:MM" ValidationExpression="([01]?[0-9]|2[0-3]):[0-5][0-9]"></asp:RegularExpressionValidator>
                 </div>
 
                 <div class="form-group">
                     <asp:Label ID="Label4" runat="server" Text="Lopetusaika"></asp:Label>
                     <asp:TextBox ID="txtLopetusAika" runat="server" CssClass="col-sm-10"></asp:TextBox>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="txtLopetusAika" runat="server" ForeColor="Red"  ErrorMessage="Anna aika muodossa TT:MM" ValidationExpression="^(1[0-2]|0[1-9]):[0-5][0-9]$"></asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="txtLopetusAika" runat="server" ForeColor="Red"  ErrorMessage="Anna aika muodossa TT:MM" ValidationExpression="([01]?[0-9]|2[0-3]):[0-5][0-9]"></asp:RegularExpressionValidator>
                 </div>
                 
                 <div class="form-group">

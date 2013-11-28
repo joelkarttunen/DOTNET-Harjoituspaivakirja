@@ -28,15 +28,19 @@
                     
                         <div class="navbar-form navbar-right">
                             <div class="form-group">
-                                <asp:TextBox ID="txtKayttajatunnus" runat="server"></asp:TextBox>
+                                <asp:Label ID="txtLogged" runat="server" Text="" ForeColor="Green"></asp:Label>
+                               
+                            </div>
+                            <div class="form-group">
+                                <asp:TextBox ID="txtKayttajatunnus" runat="server" ></asp:TextBox>
                                <!-- <input type="text" id="txtUserName" placeholder="Käyttäjätunnus" class="form-control"/> -->
                             </div>
                             <div class="form-group">
-                                <asp:TextBox ID="txtSalasana" runat="server" TextMode="Password"></asp:TextBox>
+                                <asp:TextBox ID="txtSalasana" runat="server" TextMode="Password" ></asp:TextBox>
                                 <!--<input type="password" id="txtPasswornd" placeholder="Salasana" class="form-control" />-->
                             </div>
                              <!-- <asp:Button ID="Button1" runat="server" Text="Button" /> -->
-                                <asp:Button id="loginLogout" Text="Login" runat="server" type="submit" class="btn btn-success" OnClick="On_Click" ></asp:Button>
+                                <asp:Button id="loginLogout" CausesValidation="false" Text="Login" runat="server" type="submit" class="btn btn-success" OnClick="On_Click" ></asp:Button>
                             
                          </div>
                     

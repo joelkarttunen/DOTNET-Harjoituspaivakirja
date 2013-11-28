@@ -49,6 +49,6 @@ public partial class lisaaSuoritus : System.Web.UI.Page
         */
         //Todo: lisää tietokantaan 
 
-        // Response.Redirect("selaaSuoritukset.aspx");
+         Response.Redirect("selaaSuoritukset.aspx");
     }
 }
