@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using MySql.Data.MySqlClient;
+using System.Configuration;
 
 /// <summary>
 /// Summary description for Tietokanta
 /// </summary>
 public class Tietokanta
 {
-    private static string connString =
-        "Server=mysql.labranet.jamk.fi;Database=H3100_2;Uid=H3100;Pwd=RiCkbUgrASh5r9y9zpfWSAKQIxynJxZY;";
+    private static string connString = ConfigurationManager.ConnectionStrings["HarkkaPvk"].ConnectionString;
 	
     private MySqlConnection connection = new MySqlConnection(connString);
     public Tietokanta()
@@ -21,9 +21,11 @@ public class Tietokanta
 
     public List<Suoritus> haeSuorituksetKayttajanIDnPerusteella(string kayttajanId)
     {
-        List<Suoritus> suoritukset = new List<Suoritus>();
-        connection.Open();
-        string query = "SELECT * FROM Suoritus WHERE Kayttaja_ID = @userid";
+        try
+        {
+            List<Suoritus> suoritukset = new List<Suoritus>();
+            connection.Open();
+            string query = "SELECT * FROM Suoritus WHERE Kayttaja_ID = @userid";
 
             //Create Command
             MySqlCommand cmd = new MySqlCommand(query, connection);
@@ -38,13 +40,45 @@ public class Tietokanta
                     dataReader["laji"].ToString(), dataReader["tuntemukset"].ToString());
                 suoritukset.Add(suor);
             }
-        connection.Close();
-        return suoritukset;
+            connection.Close();
+            return suoritukset;
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
     }
     // Poikkeus, jos salasana on väärä
     public Kayttaja haeKayttaja(string kayttajatunnus, string salasana)
     {
         return null;
+    }
+    
+    public int haeKayttajanID(string kayttajatunnus)
+    {
+        try
+        {
+            int KayttajanID = 0;
+            connection.Open();
+            string query = "SELECT Kayttaja_ID FROM Kayttaja WHERE kayttajatunnus = @kayttajatunnus";
+
+            //Create Command
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("kayttajatunnus", kayttajatunnus);
+            //Create a data reader and Execute the command
+            MySqlDataReader dataReader = cmd.ExecuteReader();
+            while (dataReader.Read())
+            {
+               // object testi = dataReader["Kayttaja_ID"];
+                KayttajanID = Convert.ToInt32(dataReader["Kayttaja_ID"]);
+            }
+            connection.Close();
+            return KayttajanID;
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
     }
     public Kayttaja palautaKayttaja(int id){
 

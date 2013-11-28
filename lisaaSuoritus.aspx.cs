@@ -32,7 +32,16 @@ public partial class lisaaSuoritus : System.Web.UI.Page
         txtAloitusAika.Text = alkuAjanKohta.ToString();
         txtLopetusAika.Text = lopetusAjanKohta.ToString();
 
+        //lblDebug2.Text = (string)System.Web.HttpContext.Current.User.Identity.Name;
+        Tietokanta tietokanta = new Tietokanta();
+        int KayttajanID = tietokanta.haeKayttajanID(System.Web.HttpContext.Current.User.Identity.Name);
+        Suoritus suor = new Suoritus();
+        suor.alkuAika = alkuAjanKohta;
+        suor.loppuAika = lopetusAjanKohta;
+        suor.laji = txtSuoritusLaji.Text;
+        suor.tuntemukset = txtSuoritusFiilis.Text;
 
+        tietokanta.tallennaSuoritus(suor, KayttajanID);
        /* txtSuoritusLaji.Text
         * txtSuoritusFiilis.Text
         * alkuAjankohta
