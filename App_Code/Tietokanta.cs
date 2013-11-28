@@ -19,7 +19,7 @@ public class Tietokanta
 	}
 
 
-    public List<Suoritus> haeSuorituksetKayttajanIDnPerusteella(string kayttajanId)
+    public List<Suoritus> haeSuorituksetKayttajanIDnPerusteella(int kayttajanId)
     {
         try
         {
@@ -35,8 +35,8 @@ public class Tietokanta
             Suoritus suor;
             while (dataReader.Read())
             {
-                suor = new Suoritus((int)dataReader["Suoritus_ID"], (int)dataReader["Kayttaja_ID"],
-                    (DateTime)dataReader["Alkuaika"], (DateTime)dataReader["Loppuaika"],
+                suor = new Suoritus(Convert.ToInt32(dataReader["Suoritus_ID"]), Convert.ToInt32(dataReader["Kayttaja_ID"]),
+                    Convert.ToDateTime(dataReader["Alkuaika"]), Convert.ToDateTime(dataReader["Loppuaika"]),
                     dataReader["laji"].ToString(), dataReader["tuntemukset"].ToString());
                 suoritukset.Add(suor);
             }
