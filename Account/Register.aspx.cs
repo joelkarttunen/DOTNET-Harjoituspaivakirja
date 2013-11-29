@@ -33,9 +33,9 @@ public partial class Account_Register : System.Web.UI.Page
             // vrt. muista minut. Voidaan ehkä toteuttaa jossain vaiheessa.
             //FormsAuthentication.SetAuthCookie(txtUsername.Text, false /* createPersistentCookie */);
 
-
-            AutentikointiDB.Login(txtUsername.Text, txtPassword.Text);
-
+            //FormsAuthentication.RedirectFromLoginPage(kayttajaTunnus, false);
+            //AutentikointiDB.Login(txtUsername.Text, txtPassword.Text);
+            FormsAuthentication.SetAuthCookie(txtUsername.Text, false);
             Response.Redirect("~/KayttajaTiedot.aspx");
         }
         else

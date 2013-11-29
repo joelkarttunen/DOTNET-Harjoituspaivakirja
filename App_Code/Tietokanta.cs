@@ -96,13 +96,14 @@ public class Tietokanta
 
             while (dataReader.Read())
             {
-                
+                k.id = Convert.ToInt32(dataReader["Kayttaja_ID"]);
                 k.eNimi = dataReader["e_nimi"].ToString();
                 k.sNimi = dataReader["s_nimi"].ToString();
                 k.ika = Convert.ToInt32(dataReader["ika"]);
                 k.lisatiedot = dataReader["lisatietoa"].ToString();
                 k.asuinpaikka = dataReader["asuinpaikka"].ToString();
                 k.hetu = dataReader["hetu"].ToString();
+                k.salasana = dataReader["salasana"].ToString();
                
             }
 
@@ -141,6 +142,31 @@ public class Tietokanta
             
             throw;
             
+        }
+        return success;
+    }
+    public bool paivitaKayttajanSalasana(string tunnus, string salasanaEiHashattyna)
+    {
+        string uusi_salasanaHashattyna = JAMK.ICT.Security.SHA256Hash.getSHA256Hash(salasanaEiHashattyna);
+        bool success = false;
+        try
+        {
+            connection.Open();
+            string query = "UPDATE Kayttaja SET salasana=@uusi_salasanaHashattyna WHERE kayttajatunnus=@tunnus";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+
+            cmd.Parameters.AddWithValue("@uusi_salasanaHashattyna", uusi_salasanaHashattyna);
+            cmd.Parameters.AddWithValue("@tunnus", tunnus);
+
+            cmd.ExecuteNonQuery();
+            connection.Close();
+            success = true;
+        }
+        catch (Exception)
+        {
+
+            throw;
+
         }
         return success;
     }

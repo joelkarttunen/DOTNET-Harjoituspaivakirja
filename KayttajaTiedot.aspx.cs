@@ -47,4 +47,25 @@ public partial class KayttajaTiedot : System.Web.UI.Page
 
 
     }
+    protected void btnVaihdaSalasana_Click(object sender, EventArgs e)
+    {
+        Tietokanta tk = new Tietokanta();
+        // haetaan kirjautuneen käyttäjän ID tietokannasta
+        int KayttajanID = tk.haeKayttajanID(System.Web.HttpContext.Current.User.Identity.Name);
+        Kayttaja k = tk.palautaKayttaja(KayttajanID);
+        string hashattySalasana = JAMK.ICT.Security.SHA256Hash.getSHA256Hash(txtVanhaSalasana.Text);
+        if (k.salasana.Equals(hashattySalasana))
+        {
+            //sallitaan salasanan vaihto
+            if (tk.paivitaKayttajanSalasana(System.Web.HttpContext.Current.User.Identity.Name, txtUusiSalasana.Text))
+                lblErrorMessages.Text = "Salasana vaihdettu onnistuneesti.";
+            else
+                lblErrorMessages.Text = "Salasanan vaihto ei onnistunut.";
+        }
+        else
+        {
+            lblErrorMessages.Text = "Vanha salasana ei kelpaa.";
+        }
+
+    }
 }

@@ -52,9 +52,12 @@
         <div class="form-group">
             <asp:Label ID="Label6" runat="server" Text="Toista uusi salasana"></asp:Label>
             <asp:TextBox ID="txtToistaUusiSalasana" class="form-control" runat="server" TextMode="Password"></asp:TextBox>
+            <asp:CompareValidator ID="ConfirmPasswordCompareValidator" runat="server" ControlToCompare="txtUusiSalasana"
+                    ControlToValidate="txtToistaUusiSalasana" Display="Dynamic" ErrorMessage="Salasanat eivät täsmää!"
+                    SetFocusOnError="True"></asp:CompareValidator>
         </div>
-            <asp:Button ID="btnVaihdaSalasana" runat="server" Text="Vaihda Salasana" />
-        
+            <asp:Button ID="btnVaihdaSalasana" runat="server" Text="Vaihda Salasana" OnClick="btnVaihdaSalasana_Click" />
+            <asp:Label ID="lblErrorMessages" runat="server" Text=""></asp:Label>
             </div>
     </div>
 </asp:Content>
