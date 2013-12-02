@@ -24,6 +24,10 @@
             <td style="width: 100px">
                 <asp:RequiredFieldValidator ID="FirstNameRequiredFieldValidator" runat="server" ControlToValidate="txtFirstName"
                     Display="Dynamic" ErrorMessage="Etunimi on vaadittu" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="FirstnameRegularExpressionValidator" runat="server" ControlToValidate="txtFirstName"
+                    Display="Dynamic" ValidationExpression="\b[a-öA-Ö]{2,20}\b" ErrorMessage="Pituuden täytyy olla 2-20. Voit käyttää isoja- ja pieniä kirjaimia">
+
+                </asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>
@@ -36,6 +40,10 @@
             <td style="width: 100px">
                 <asp:RequiredFieldValidator ID="LastNameRequiredFieldValidator" runat="server" ControlToValidate="txtLastName"
                     Display="Dynamic" ErrorMessage="Sukunimi on vaadittu" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtLastName"
+                    Display="Dynamic" ValidationExpression="\b[a-öA-Ö]{2,45}\b" ErrorMessage="Pituuden täytyy olla 2-45. Voit käyttää isoja- ja pieniä kirjaimia">
+
+                </asp:RegularExpressionValidator>
             </td>
         </tr>
             
@@ -49,6 +57,10 @@
             <td style="width: 100px">
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtUsername"
                     Display="Dynamic" ErrorMessage="Käyttäjätunnus vaaditaan" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="KayttajatunnusRegularExpressionValidator" runat="server" ControlToValidate="txtUsername"
+                    Display="Dynamic" ValidationExpression="\b[0-9a-öA-Ö]{2,20}\b" ErrorMessage="Pituuden täytyy olla 2-20. Voit käyttää numeroita, ssekä isoja- ja pieniä kirjaimia">
+
+                </asp:RegularExpressionValidator>
             </td>
         </tr>
 
@@ -73,7 +85,9 @@
                 <asp:TextBox ID="txtAsuinpaikka" runat="server" ></asp:TextBox>
             </td>
             <td style="width: 100px">
-                <!-- Tähän validaattori jos halutaan-->
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtAsuinpaikka"
+                   Display="Dynamic" ValidationExpression="\b[a-öA-Ö]{0,45}\b" ErrorMessage="Pituuden täytyy olla 0-45. Voit käyttää isoja- ja pieniä kirjaimia">
+                </asp:RegularExpressionValidator>
             </td>
         </tr>
 
