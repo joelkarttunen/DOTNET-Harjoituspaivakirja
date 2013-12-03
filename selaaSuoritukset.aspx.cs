@@ -11,9 +11,9 @@ public partial class selaaSuoritukset : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsCallback)
+        if (!IsPostBack)
             IniMyStuff();
-       
+        
     }
 
     protected void IniMyStuff()
@@ -36,15 +36,15 @@ public partial class selaaSuoritukset : System.Web.UI.Page
        // suoritusList.Add(s1);
        // suoritusList.Add(s2);
        // suoritusList.Add(s3);
-
+        
         suoritusRepeater.DataSource = suoritusList;
         suoritusRepeater.DataBind();
 
         Session["suoritukset"] = suoritusList;
-
+        //Session["calendarEnd"] = suoritusLoppuCalendar.SelectedDate;
+        //Session["calendarStart"] = suoritusAlkuCalendar.SelectedDate;
     }
-    
-    protected void suoritusLoppuCalendar_SelectionChanged(object sender, EventArgs e)
+    protected void updateCalendarDate()
     {
         List<Suoritus> rajattuList = new List<Suoritus>();
         List<Suoritus> suoritusList = (List<Suoritus>)Session["suoritukset"];
@@ -58,21 +58,17 @@ public partial class selaaSuoritukset : System.Web.UI.Page
 
         suoritusRepeater.DataSource = rajattuList;
         suoritusRepeater.DataBind();
+    }
+    protected void suoritusLoppuCalendar_SelectionChanged(object sender, EventArgs e)
+    {
+
+        updateCalendarDate();
+        
     }
     protected void suoritusAlkuCalendar_SelectionChanged(object sender, EventArgs e)
     {
-        List<Suoritus> rajattuList = new List<Suoritus>();
-        List<Suoritus> suoritusList = (List<Suoritus>)Session["suoritukset"];
 
-        foreach (Suoritus s in suoritusList)
-        {
-            if (s.alkuAika >= suoritusAlkuCalendar.SelectedDate && s.loppuAika <= suoritusLoppuCalendar.SelectedDate)
-                rajattuList.Add(s);
-        }
-
-
-        suoritusRepeater.DataSource = rajattuList;
-        suoritusRepeater.DataBind();
+        updateCalendarDate();
     }
     protected void suoritusRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
@@ -92,5 +88,29 @@ public partial class selaaSuoritukset : System.Web.UI.Page
             suoritusRepeater.DataSource = suoritusList;
             suoritusRepeater.DataBind();
         }
+    }
+    protected void alkuVuosiBack_Click(object sender, EventArgs e)
+    {
+        suoritusAlkuCalendar.SelectedDate = suoritusAlkuCalendar.SelectedDate.AddYears(-1);
+        suoritusAlkuCalendar.VisibleDate = suoritusAlkuCalendar.SelectedDate;
+        updateCalendarDate();
+    }
+    protected void alkuVuosiForward_Click(object sender, EventArgs e)
+    {
+        suoritusAlkuCalendar.SelectedDate = suoritusAlkuCalendar.SelectedDate.AddYears(1);
+        suoritusAlkuCalendar.VisibleDate = suoritusAlkuCalendar.SelectedDate;
+        updateCalendarDate();
+    }
+    protected void loppuVuosiBack_Click(object sender, EventArgs e)
+    {
+        suoritusLoppuCalendar.SelectedDate = suoritusLoppuCalendar.SelectedDate.AddYears(-1);
+        suoritusLoppuCalendar.VisibleDate = suoritusLoppuCalendar.SelectedDate;
+        updateCalendarDate();
+    }
+    protected void loppuVuosiForward_Click(object sender, EventArgs e)
+    {
+        suoritusLoppuCalendar.SelectedDate = suoritusLoppuCalendar.SelectedDate.AddYears(1);
+        suoritusLoppuCalendar.VisibleDate = suoritusLoppuCalendar.SelectedDate;
+        updateCalendarDate();
     }
 }

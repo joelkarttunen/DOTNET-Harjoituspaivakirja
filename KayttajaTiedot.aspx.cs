@@ -22,6 +22,7 @@ public partial class KayttajaTiedot : System.Web.UI.Page
             txtHetu.Text = k.hetu;
             txtAsuinPaikka.Text = k.asuinpaikka;
             txtInfo.Text = k.lisatiedot;
+            txtEmail.Text = k.sPosti;
         }
     }
     protected void btnVaihdaTiedot_Click(object sender, EventArgs e)
@@ -35,7 +36,7 @@ public partial class KayttajaTiedot : System.Web.UI.Page
         k.hetu = txtHetu.Text;
         k.asuinpaikka = txtAsuinPaikka.Text;
         k.lisatiedot = txtInfo.Text;
-
+        k.sPosti = txtEmail.Text;
 
 
         bool result = tk.paivitaKayttajaTiedot(System.Web.HttpContext.Current.User.Identity.Name, k);

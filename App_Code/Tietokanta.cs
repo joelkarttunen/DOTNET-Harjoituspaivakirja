@@ -25,7 +25,7 @@ public class Tietokanta
         {
             List<Suoritus> suoritukset = new List<Suoritus>();
             connection.Open();
-            string query = "SELECT * FROM Suoritus WHERE Kayttaja_ID = @userid";
+            string query = "SELECT * FROM Suoritus WHERE Kayttaja_ID = @userid ORDER BY Alkuaika ASC";
 
             //Create Command
             MySqlCommand cmd = new MySqlCommand(query, connection);
@@ -104,6 +104,7 @@ public class Tietokanta
                 k.asuinpaikka = dataReader["asuinpaikka"].ToString();
                 k.hetu = dataReader["hetu"].ToString();
                 k.salasana = dataReader["salasana"].ToString();
+                k.sPosti = dataReader["email"].ToString();
                
             }
 
@@ -122,7 +123,7 @@ public class Tietokanta
         try
         {
             connection.Open();
-            string query = "UPDATE Kayttaja SET e_nimi=@uusi_enimi, s_nimi=@uusi_snimi, ika=@uusi_ika, lisatietoa=@uusi_tieto, asuinpaikka=@uusi_paikka, hetu=@uusi_hetu WHERE kayttajatunnus=@tunnus";
+            string query = "UPDATE Kayttaja SET e_nimi=@uusi_enimi, s_nimi=@uusi_snimi, ika=@uusi_ika, lisatietoa=@uusi_tieto, asuinpaikka=@uusi_paikka, hetu=@uusi_hetu, email=@uusi_email WHERE kayttajatunnus=@tunnus";
             MySqlCommand cmd = new MySqlCommand(query, connection);
 
             cmd.Parameters.AddWithValue("@uusi_enimi", k.eNimi);
@@ -132,7 +133,7 @@ public class Tietokanta
             cmd.Parameters.AddWithValue("@uusi_paikka", k.asuinpaikka);
             cmd.Parameters.AddWithValue("@uusi_hetu", k.hetu);
             cmd.Parameters.AddWithValue("@tunnus", tunnus);
-
+            cmd.Parameters.AddWithValue("@uusi_email", k.sPosti);
             cmd.ExecuteNonQuery();
             connection.Close();
             success = true;

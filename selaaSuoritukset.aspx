@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server" EnableViewState="true">
     <br />
     <br />
     <div class="container">
@@ -13,11 +13,15 @@
     
 
     <div class="col-md-3">
-        <asp:Label ID="Label3" runat="server" Text="Alku"></asp:Label>
-        <asp:Calendar ID="suoritusAlkuCalendar" AutoPostBack="true" runat="server" OnSelectionChanged="suoritusAlkuCalendar_SelectionChanged">
+        <h4>Alku</h4>
+        
+        <asp:LinkButton ID="alkuVuosiBack" CssClass="text-center" runat="server" OnClick="alkuVuosiBack_Click"><<</asp:LinkButton> <b>VUOSI</b> <asp:LinkButton ID="alkuVuosiForward" runat="server" OnClick="alkuVuosiForward_Click">>></asp:LinkButton>
+        
+        <asp:Calendar ID="suoritusAlkuCalendar" EnableViewState="true" runat="server" OnSelectionChanged="suoritusAlkuCalendar_SelectionChanged">
         </asp:Calendar>
-        <asp:Label ID="Label4" runat="server" Text="Loppu"></asp:Label>
-        <asp:Calendar ID="suoritusLoppuCalendar" AutoPostBack="true" EnableViewState="true"  runat="server" OnSelectionChanged="suoritusLoppuCalendar_SelectionChanged"></asp:Calendar>
+        <h4>Loppu </h4>
+        <asp:LinkButton ID="loppuVuosiBack" runat="server" OnClick="loppuVuosiBack_Click"><<</asp:LinkButton> <b>VUOSI</b> <asp:LinkButton ID="loppuVuosiForward" runat="server" OnClick="loppuVuosiForward_Click">>></asp:LinkButton>
+        <asp:Calendar ID="suoritusLoppuCalendar" EnableViewState="true" runat="server" OnSelectionChanged="suoritusLoppuCalendar_SelectionChanged"></asp:Calendar>
     </div>
         
       <div class="col-md-9">

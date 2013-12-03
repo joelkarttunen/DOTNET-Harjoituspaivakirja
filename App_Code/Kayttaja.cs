@@ -12,6 +12,7 @@ public class Kayttaja
     public string eNimi { get; set; }
     public string sNimi { get; set; }
     public int ika { get; set; }
+    public string sPosti { get; set; }
     public string asuinpaikka { get; set; }
     public string kayttajatunnus { get; set; }
     public string salasana { get; set; }

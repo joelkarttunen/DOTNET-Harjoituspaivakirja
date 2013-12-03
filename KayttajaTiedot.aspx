@@ -29,6 +29,17 @@
                     Display="Dynamic" ValidationExpression="\b[a-öA-Ö]{2,45}\b" ErrorMessage="Pituuden täytyy olla 2-45. Voit käyttää isoja- ja pieniä kirjaimia">
                 </asp:RegularExpressionValidator>
         </div>
+
+            <div class="form-group">
+            <asp:Label ID="Label10" runat="server" Text="Sähköposti"></asp:Label>
+            <asp:TextBox ID="txtEmail" class="form-control" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="EmailRequiredFieldValidator" runat="server" ControlToValidate="txtEmail"
+                    Display="Dynamic" ErrorMessage="Sähköpostiosoite vaaditaan" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="EmailRegularExpressionValidator" runat="server"
+                    ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="Syötä oikeaa muotoa oleva sähköpostiosoite"
+                    SetFocusOnError="True" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*</asp:RegularExpressionValidator>
+            </div>
+
             <div class="form-group">
             <asp:Label ID="Label3" runat="server" Text="Ikä"></asp:Label>
             <asp:TextBox ID="txtIka" class="form-control" runat="server"></asp:TextBox>
