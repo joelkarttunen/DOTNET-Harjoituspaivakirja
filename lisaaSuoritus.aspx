@@ -53,7 +53,7 @@
                 </div>
             </div>
 
-            <asp:Label ID="lblDebug2" runat="server" Text="Poista tämä, kun ohjelma on valmis"></asp:Label>
+            <asp:Label ID="lblDebug2" runat="server" Text=""></asp:Label>
 
             <hr />
           
